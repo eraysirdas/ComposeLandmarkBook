@@ -4,6 +4,8 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.animation.EnterTransition
+import androidx.compose.animation.ExitTransition
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -32,7 +34,10 @@ class MainActivity : ComponentActivity() {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     Box(modifier = Modifier.padding(innerPadding)){
 
-                        NavHost(navController = navController, startDestination = "list_screen"){
+                        NavHost(navController = navController,
+                            startDestination = "list_screen",
+                            enterTransition = { EnterTransition.None },
+                            exitTransition = { ExitTransition.None }){
                             createData()
                             composable("list_screen") {
                                 ListScreen(landmarks = landmarkList, navController = navController )
